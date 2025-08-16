@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../content/bootstrap.css">
+    <link rel="stylesheet" href="../content/bootstrap-icons.min.css">
+    <script defer src="../script/bootstrap.bundle.js"></script>
+    <script defer src="../script/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <nav class="navbar" style="background:#0b1220;border-bottom:1px solid #1f2937;">
+        <div class="container">
+            <a class="navbar-brand text-light" href="#"><i class="bi bi-geo"></i> Indicadores • El Progreso</a>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <!-- Controles -->
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+            <label class="form-label">Departamento</label>
+            <select id="selDepto" class="form-select">
+                <!-- Puedes agregar más deptos después -->
+                <option value="2" selected>2 — El Progreso</option>
+            </select>
+            </div>
+            <div class="col-md-6">
+            <label class="form-label">Municipio (999 = resumen departamental)</label>
+            <select id="selMuni" class="form-select"></select>
+            </div>
+            <div class="col-md-2">
+            <button id="btnCargar" class="btn btn-primary w-100">
+                <i class="bi bi-cloud-download"></i> Cargar
+            </button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="card my-4">
+            <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                <h1 id="tituloLugar" class="h3 mb-1">—</h1>
+                <p class="mb-0 text-soft">
+                    <span id="capitalLugar">—</span> •
+                    <span id="idsLugar">—</span>
+                </p>
+                </div>
+                <span id="badgeTipo" class="badge rounded-pill badge-soft">—</span>
+            </div>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="row g-3" id="kpiContainer"></div>
+
+        <!-- Charts -->
+        <div class="row g-3 mt-1">
+            <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-header"><strong>Sexo</strong></div>
+                <div class="card-body"><canvas id="chartSexo"></canvas></div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-header"><strong>Urbano vs Rural</strong></div>
+                <div class="card-body"><canvas id="chartSector"></canvas></div>
+            </div>
+            </div>
+            <div class="col-lg-4">
+            <div class="card h-100">
+                <div class="card-header"><strong>Rangos de edad</strong></div>
+                <div class="card-body"><canvas id="chartEdad"></canvas></div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Tablas -->
+        <div class="row g-3 mt-1">
+            <div class="col-12 col-xl-6">
+            <div class="card h-100">
+                <div class="card-header"><strong>Educación</strong></div>
+                <div class="card-body p-0">
+                <table class="table table-dark table-striped mb-0">
+                    <tbody id="tblEducacion"></tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+            <div class="col-12 col-xl-6">
+            <div class="card h-100">
+                <div class="card-header"><strong>Hogares y vivienda</strong></div>
+                <div class="card-body p-0">
+                <table class="table table-dark table-striped mb-0">
+                    <tbody id="tblHogares"></tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+            <div class="col-12">
+            <div class="card">
+                <div class="card-header"><strong>Distribución étnica</strong></div>
+                <div class="card-body p-0">
+                <table class="table table-dark table-striped mb-0">
+                    <thead>
+                    <tr><th>Pueblo</th><th class="text-end">Población</th><th class="text-end">Porcentaje</th></tr>
+                    </thead>
+                    <tbody id="tblEtnia"></tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Templates -->
+        <template id="tplKPI">
+            <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100">
+                <div class="card-body">
+                <div class="text-soft small" data-field="label">Label</div>
+                <div class="fs-4 fw-bold" data-field="value">0</div>
+                <div class="small" data-field="desc">—</div>
+                </div>
+            </div>
+            </div>
+        </template>
+
+        <template id="tplRow">
+            <tr>
+            <td data-field="col1">—</td>
+            <td class="text-end" data-field="col2">—</td>
+            <td class="text-end" data-field="col3">—</td>
+            </tr>
+        </template>
+
+        <footer class="py-4 text-center text-soft">
+            <small>Fuente: https://censopoblacion.azurewebsites.net (demo)</small>
+        </footer>
+    </main>
+</body>
+</html>
+
