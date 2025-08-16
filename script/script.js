@@ -109,6 +109,8 @@ const MUNICIPIOS_EL_PROGRESO = [
     tbody.appendChild(tpl);
   }
 
+//addRow: clona el <template id="tplRow"> para crear filas de tabla genéricas con 3 columnas.
+
   // llenar select de municipios
   const selMuni = document.getElementById('selMuni');
   function cargarMunicipiosElProgreso() {
@@ -126,6 +128,8 @@ const MUNICIPIOS_EL_PROGRESO = [
   
 
   let chartSexo, chartSector, chartEdad;
+
+// guardamos los chart de manera global para destruirlos si el usuario vuelve a cargar
 
   function renderCharts(d) {
     for (const ch of [chartSexo, chartSector, chartEdad]) { if (ch) ch.destroy(); }
@@ -149,7 +153,8 @@ const MUNICIPIOS_EL_PROGRESO = [
     });
   }
 
-//reder charts, aca definimos que graficas camos a mostrar con que dTOA
+//reder charts, aca definimos que graficas que vamos a mostrar con la informacion
+//recibe solo los porcentajes necesarios y dibuja 3 donuts con Chart.js (sexo, sector y edad)
 
   function addKPI(container, label, value, desc='') {
     const tpl = document.getElementById('tplKPI').content.cloneNode(true);
